@@ -1,0 +1,132 @@
+Vim 101: Vim için Yeni Başlayanlar Kılavuzu
+Hiç Vim öğrenmek istedim, ama nasıl başlayacağından emin değil miydi? Sorun değil. Kapandık! Bu, Vim'in nasıl kullanılacağını ve dünyanın en iyi metin editörünü kullanmaya nereden başlayacağını kapsayan dört bölümden (muhtemelen daha uzun) bir seriden ilki olacak.
+
+Vim için yeni başlayanlar için açıkça bir makale olduğunu unutmayın. Vim'i bir süredir kullanıyorsanız, bunların hepsi tamamen tanıdık gelmelidir - ve neden bazı konuların ele alınmadığını merak edebilirsiniz. Sabır. Herşeye zamanında ulaşacağız, ama çok şey var!
+
+Vim nedir ve neden onu istiyorum?
+Vim, birçok geliştirici ve güç kullanıcısı için tercih editörüdür. UNIX'in bir versiyonu için 1970'lerde Bill Joy tarafından yazılan vi editörüne dayanan bir "modal" metin editörüdür . Vi'nın temel bağlarını miras alır, ancak aynı zamanda orijinal vi'den eksik olan çok sayıda işlevsellik ve genişletilebilirlik ekler.
+
+Modal ile ne demek istiyoruz ? Çoğu kelime işlemci ve metin editörü kullandığınızda, alfasayısal tuşlar (örn., 1 ile 9 arası bir geçiş) yalnızca bir kontrol anahtarı tarafından değiştirilmedikçe bu karakterleri girmek için kullanılır. Vim'de, editörün içinde bulunduğu mod , alfasayısal tuşların bu karakterleri girip girmeyeceğini veya imleci belgeden geçirip geçirmeyeceğini belirler.
+
+Örneğin, birçok metin editörü ve kelime işlemcisi, bir menü öğesini veya simgeyi tıklatmak için farenizi kullanmanız veya bir dosyayı kaydetmek için Ctrl-s kısayol tuş bileşimini kullanmanız gerekir.
+
+Vim'de, klavyeden çıkmadan ve bazen de ev tuşlarından bile çıkmadan bir dosyayı kaydedebilirsiniz. Vim'in ekleme modundan, Escape tuşuna ve ardından: w. Bu kadar. Daha sonra bunun üzerine.
+
+Eğer tüm bunlar karmaşık geliyorsa, bu değil - ama otomatik alıştırma yerine otomatik şanzıman kullanmak gibi biraz alışmak biraz zaman alabilir. Peki, neden Vim'i öğrenmek istersiniz? Vim benim favori editörü olmasına rağmen, çok künt olacak: Eğer olabilir değil istiyorum. Öncehiçbir sistem yönetimini veya metin ağır düzenleme yapacağız değilse ve Vim sahiptir yeteneklerini öğrenme her zaman yatırım yapmak istemiyorsanız sonra öğrenme Vim olabilir zaman en iyi kullanım biçimi değil.
+
+Diğer taraftan, aşağıdakilerden herhangi birini yaparsanız, muhtemelen Vim'e bakmak istersiniz:
+
+Sistem Yönetimi
+Programlama
+HTML, LaTeX veya diğer biçimlendirme dilleriyle çalışma
+Düz metin dosyalarının ağır düzenlemesi
+Vim, başlangıçta Gedit gibi standart GUI metin editörleri veya OpenOffice.org yazarı gibi kelime işlemcileri kadar kolay olmasa da , daha uzun bir süre boyunca Vim kullanarak daha üretken olabilirsiniz. Eğer bir tiz-tipçisiyseniz, Vim ile hızınızın daha da artacağını anlayacaksınız çünkü elleriniz nadiren "ev" tuşlarını bırakmalıdır - ve eğer seçerseniz sadece fareyi kullanmanız gerekecek böyle yap.
+
+Sistem yöneticileri, üzerinde çalışmanız gereken herhangi bir * nix sisteminde bulunması en muhtemel olan editör olması nedeniyle en az bir Vim / vi tanıması gerekir. Vi, sistem yönetiminin lingua franca'sıdır .
+
+Programcıysanız veya HTML, LaTeX, DocBook, vb. Gibi yapılandırılmış işaretleme dilleriyle çalışıyorsanız, Vim artalan dizindir. Programlama ve işaretleme dilleri ile çalışmayı daha kolay hale getiren daha sonraki sürümlerde kapsayacağım bir dizi özellik sunuyor.
+
+Şüpheci olabilirsiniz. Ben de 10 yıl önce patronumun Vim'i şirketin internet sitesinde çalışmasını istediğimde ısrar ettim. İlk hafta acı vericiydi. Bundan sonraki ay tamam oldu. İki ay içinde, ayaklarıma daha çabuk girip Vim'den uzaklaşmak istiyorum.
+
+Modları
+Bazı insanlar Vim'in aslında kaç modda olduğuna katılmıyor. Üç tanımlayacağım: ekleme modu, komut modu ve son satır modu. Vim - komut modunu başlattığınızda göreceğiniz varsayılan modla başlayalım.
+
+Bir dosyayı düzenlemek için vim dosya adını çalıştırdığınızda , Vim komut modunda başlar. Bu, tüm alfasayısal tuşların, bu karakterleri eklemek yerine komutlara bağlı olduğu anlamına gelir. J yazarken "j" karakteri eklenmez - imleci bir satır aşağı taşır. Dd yazılması, "dd" ifadesini eklemek yerine tüm satırı siler.
+
+Ekleme moduna girmek için , i ("insert" için) yazın ve şimdi tuşlar beklediğiniz gibi davranacaktır. Bir düzeltme yapmak, dosyayı kaydetmek veya komut modu veya son satır modu için ayrılmış başka bir işlem yapmak istediğinizde normal bir şekilde yazabilirsiniz. Ekleme modundan çıkmak için Escape tuşuna basın.
+
+Escape tuşuna bastığınızda, tekrar komut modundasınız. Dosyanızı kaydetmek veya dokümanınızı aramak isterseniz ne yapmalısınız? Sorun değil, basın: ve Vim son moda moduna geçecektir . Vim şimdi şu komutu yazmak için bir komut girmenizi bekliyor: w dosyayı yazmak için: veya editörden çıkmak için: q.
+
+Bütün bunlar karmaşık geliyorsa, gerçekten değil. Modlar arasında hareket etmek ve hareket, komutlar vb. Için en önemli anahtarları ezberlemek için beyninizi eğitmeye başlamak birkaç gün sürer. Ama bir kere onu asmaya başladığınızda, Vim'de bir dosyayı nasıl düzenlediğine göre şaşıracaksınız. Bilmeniz gereken en yaygın komutlardan bazılarını inceleyelim.
+
+Vim'de Taşınmanın Temelleri
+Öğrenmek isteyeceğiniz ilk şey, bir dosya etrafında nasıl hareket edeceğinizdir. Komut modundayken, aşağıdaki tuşları ve ne yaptığını hatırlamak istersiniz:
+
+h İmleci bir karakter sola taşır.
+j imleci bir satır aşağı taşır.
+k imleci bir satıra taşır.
+l imleci bir karakter sağa taşır.
+0, imleci satırın başına taşır.
+$ imleci satırın sonuna taşır.
+w bir kelimeyi ileriye taşır.
+b geriye doğru bir kelime.
+G, dosyanın sonuna gider.
+gg dosyasının başına gider.
+`. son düzenlemeye taşı
+İşte kullanışlı bir ipucu: bir sayı ile bir hareket komutunun başlatılması, bu hareketi bir çok kez yürütecektir. Yani, altı satır yukarı gitmek istiyorsanız, 6k girin ve Vim imleci altı çizgiyi yukarı taşıyacak. Beş kelimeden fazla geçmek istiyorsanız, 5w girin. 10 kelimeyi geri taşımak için 10b'yi kullanın.
+
+Bu ipucunu aklınızda bulundurun - bir sayı ile diğer komutların önünün açılmasının da işe yarayacağını göreceksiniz.
+
+Öğrenmenin en iyi yolu pratiktir. Vim'i denemek için birkaç dakikanızı ayırın. Şu anda bir Linux sisteminde iseniz, bir terminal açın ve vim dosya adı yazın. Ekleme modunu girin ve bir bit yazın (veya bu yazıdan bazı metinleri Vim'e kopyalayın) ve ardından dosyanın çevresindeki hareketleri uygulamaya başlamak için Escape tuşuna basın. Asıldığınızı hissettiğinizde, biraz düzenleme zamanı.
+
+Vim Stili Düzenleme
+Şimdi biraz nasıl hareket edeceğini biliyorsun, düzenlemeyi deneyelim. İmleci bir kelimenin başlangıcına taşıyın. Şimdi x yazın. Ne oldu? İmlecin bulunduğu karakteri silmiş olmalısınız. Geri almak ister misin? Sorun değil. U (geri al) için yazınız ve geri yüklenecektir.
+
+Bütün bir kelimeyi silmek ister misiniz? İmlecinizi tekrar bir kelimenin başlangıcına taşıyın. Dw kullanın Bunun yalnızca imlecin üzerindeki kelimeyi sileceğini unutmayın - böylece imleci bir kelimenin ortasına getirirseniz, sadece bu noktadan silinecektir. Yine, onu çözeceksin. Vim'in birden çok geri alma düzeyi olduğunu unutmayın, bundan önce değişikliği ve bundan önceki değişikliği geri alabilirsiniz.
+
+Geri almayı geri almak ister misin? Ctrl-r'ye bas. Bu senin son geri kalanını yeniden yapacak.
+
+Yine, başlangıç ​​olarak bilmek istediğiniz komutların daha uzun bir listesi:
+
+d silme işlemini başlatır.
+dw bir kelimeyi silecektir.
+d0, bir satırın başına gider.
+d $ bir satırın sonuna kadar silecek.
+dgg, dosyanın başına siler.
+dG dosyanın sonuna siler.
+Son operasyonu iptal edeceksiniz.
+Ctrl-r son geri almayı yeniden yapacak.
+Birkaç komutun bir metin işlemini ve hareket tuşunu birleştirdiğini fark etmiş olabilirsiniz. gg sizi bir dosyanın sonuna götürür ve d silmek için kullanılır. Onları birleştirmek size daha güçlü bir şey verir. Vim böyle. Eğer Vim'de çalışıyorsanız ve "hey, bir şeyleri kolaylaştırmak için bildiğim iki şeyi birleştirip birleştiremediğimi merak ediyorum" diye düşünürsek, cevap genellikle (ama her zaman değil) evet.
+
+Biraz hareket edelim ve arama ve değiştirme hakkında kısaca konuşalım.
+
+Arama ve Değiştirme
+Artık metnin nasıl girileceğini, bazı değişiklikler yapabildiğinizi ve benzerlerini bildiğinize göre, arama ve Vim'de nasıl kullanılacağını öğrenmenin zamanı geldi. Gerçekten çok kolay. Belgeyi komut modundan aramak istiyorsanız, aramak istediğiniz metni kullanın / izleyin. Yani, "tavşan" ı aramak istersem, girebilirim ve sonra tavşanı girebilir ve enter'a basabilirim.
+
+Tekrar bulmak istersem, ben vururum. Metnin önceki bir örneğini aramak istersem, bunun yerine N'yi kullanırım, bu da belgenin karşıt yönünü arar.
+
+Aramanızın yönünü tersine çevirmek ister misiniz? Kullan? / ve yerine Vim belge boyunca geriye doğru hareket edecektir. Yukarıdaki gibi n ve N kullanılması, aramanın yönünü tersine çevirir.
+
+/ metin , belgede metin için ileriye doğru arama.
+imleci son aramadan metnin bir sonraki örneğine hareket ettirin. Bu, belgenin başına kaydırılacaktır.
+N, imleci son aramanın metninin önceki örneğine hareket ettirin.
+? Belgedeki metin için metin arama , geriye doğru gitme.
+:% s / metin / değiştirme metni / g için dokümanın tamamını arama metni ve ile değiştirin Yeni metnin .
+:% s / text / replacement text / gc belgesinin tamamını tarayın ve metni değiştirmeden önce onaylayın .
+Bu oldukça kolay, değil mi? Şimdi önemli bir operasyona geçmek: Metin kesme ve yapıştırma.
+
+Kopyalama ve Yapıştırma
+Metni zaten silmeyi öğrendiniz. Sildiğiniz son metin, belgeye geri yapıştırılmaya hazır tamponda saklanır. Yani, dd'yi çalıştırırsanız ve tüm satırı sildiyseniz, şimdi belgeye geri yapıştırmak için p veya P'ye basabilirsiniz. Bu, tek satırlar, çoklu satırlar ve hatta tüm belgeler için geçerlidir.
+
+Metin seçmek ister misiniz? Komut modunda V tuşuna basın ve metni vurgulamak için ok tuşlarını veya standart hareket tuşlarını (h, k, j, l) kullanarak imleci hareket ettirebilirsiniz. Bu oldukça kolay, ama yavaş olabilir. Tüm satırları bir seferde kopyalamak ister misiniz? V yerine V'yi kullanın ve bir seferde tüm satırları vurgulayın. Yine, ek satırları vurgulamak için hareket tuşlarını kullanabilirsiniz.
+
+Vim'in de harika bir numarası var. Sütunlarda vurgu yapabilirsiniz. Ctrl-v'yi kullanın ve tüm satırın yerine bir sütunu vurgulayabilirsiniz. Bu, sütunlarda veri içeren bazı metin dosyaları ile çalışırken ve tüm bir satırı değil tüm bir sütunu seçmek istediğinizde yararlı olabilir.
+
+İstediğinizi vurguladığınızda, y tuşuna basın ve metni daha sonra yapıştırılacak arabelleğe "yerleştirir". Yani normal bir macun işlemi şöyle görünebilir:
+
+Bazı metni vurgulamak için v tuşuna basın. Sonra arabelleğe sokmak için y tuşuna basın. Ardından, imleci istediğiniz yere taşıyın ve p komutunu kullanın. İşte gidiyorsun - biraz mesaj attın!
+
+En çok başlamanız gereken komutlar:
+
+v Bir seferde bir karakteri vurgulayın.
+V bir defada bir satırı vurgular.
+Ctrl-v sütunlara göre vurgulayın.
+Geçerli satırdan sonra p yapıştırın.
+Geçerli satırdaki metni p yapıştırın.
+y kopyala arabelle kopyala.
+Bir gün için yeterince düzenleme yaptınız ve paketlemeye hazırsınız. Sorun değil. Dosyayı nasıl kaydedip Vim'den çıkabilirsiniz.
+
+Kaydetme ve Çıkma
+Ekleme modundaysanız, Escape tuşuna basın. Ardından şunları girin: Ekranın altındaki bir girişi görmeye hazır bir imleçle birlikte göreceksiniz.
+
+Düzenlemekte olduğunuz dosyayı yazmak için, w. (Yani, sahip olacak: w.) Bu dosyayı mevcut dosya adına yazacaktır. Bir dosya adınız yoksa veya başka bir dosya adına yazmak istiyorsanız, şunu kullanın: w dosyaadı .
+
+Vim'i bitirdikten sonra çıkmak için: q. Vim senin arkadaşın olduğu için, dosyayı kaydetmediysen, sadece seninle çıkmaz. "Son değişiklikten beri yazma yok" diyecektir ve eklemenizi öneririz! geçersiz kılmak.
+
+Gerçekten bırakmak isterseniz, devam edin ve kullanın: q! nagged olmadan bırakmak için.Vis de ZZ kullanarak, dosya kaydedecek ve çıkacaktır kullanarak çıkabilirsiniz. Yine, tüm bunlar biraz karmaşık gelebilir, ama gerçekten değil. Hepsini eklediğinizde, çok güçlü bir paket oluşturmayı öğrenmek için bir sürü küçük şey var.
+
+Şimdilik, başlaman için yeterli olmalı. Yine de korkma. Gelecek hafta daha fazla Vim kullanımı yapacağız ve uzman olana kadar Vim üzerinde çalışmaya devam edeceğiz.
+
+Joe 'Zonker' BROCKMEIER uzun zamandır FOSS savunucusudur ve şu anda çalışır Novell olarak topluluk yöneticisi için openSUSE . Novell'a katılmadan önce, Brockmeier, Linux Magazine, Linux Weekly News, Linux.com, UnixReview.com, IBM developerWorks ve diğerleri gibi bir dizi yayın için açık kaynak ritmini kapsayan bir teknoloji gazetecisi olarak çalıştı.
+
+
