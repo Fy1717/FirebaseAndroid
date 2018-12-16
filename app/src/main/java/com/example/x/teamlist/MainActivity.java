@@ -20,63 +20,83 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button Add,Show,Exit;
-    TextView kayıtlar;
-    EditText name,surname,email,phone;
+    Button Add, Show, Exit;
+    TextView mesajlar;
+    EditText name, mesaj;
 
 
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
 
-    FirebaseDatabase database=FirebaseDatabase.getInstance();
-    DatabaseReference myRef =database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Add =(Button)findViewById(R.id.buttonAdd);
-        Show =(Button)findViewById(R.id.buttonShow);
-        Exit=(Button) findViewById(R.id.buttonExit);
-        kayıtlar=(TextView)findViewById(R.id.kayıtlar);
-        name=(EditText)findViewById(R.id.editName);
-        surname=(EditText)findViewById(R.id.editSurname);
-        email=(EditText)findViewById(R.id.editMail);
-        phone=(EditText)findViewById(R.id.editPhone);
+        Add = (Button) findViewById(R.id.buttonAdd);
+        Show = (Button) findViewById(R.id.buttonShow);
+        Exit = (Button) findViewById(R.id.buttonExit);
+        mesajlar = (TextView) findViewById(R.id.mesajlar);
+        name = (EditText) findViewById(R.id.userName);
+        mesaj = (EditText) findViewById(R.id.userMessage);
 
         final Context context = this;
 
 
+        DatabaseReference dbGelenler = db.getReference("MESSAGES");
+        dbGelenler.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot key : dataSnapshot.getChildren()) {
+                    mesajlar.append("Kullanıcı : "+key.getValue(User.class).getName() +"\n");
+                    mesajlar.append("Mesaj     :    "+key.getValue(User.class).getMesaj() + "\n");
+                    mesajlar.append("------------------------------------------------------------------------------------------------------------------------------" + "\n");
+
+
+                    // buffer.append(gelenler.getValue(User.class).getName()+"\n   "+gelenler.getValue(User.class).getMesaj()+"\n\n");
+                }
+                //showMessage("Mesajlar",buffer.toString());
+            }
+
+
+        // Ekleme Metodumuz
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final String getName, getSurname,getMail,getPhone;
+                final String getName, getMessage;
 
                 getName = name.getText().toString();
-                getSurname = surname.getText().toString();
-                getMail = email.getText().toString();
-                getPhone = phone.getText().toString();
-
-                AddNewUser(getName,getSurname,getMail,getPhone);
+                getMessage = mesaj.getText().toString();
+                System.out.println(getName);
+                AddNewUser(getName, getMessage);
             }
         });
 
 
-
-
-        final StringBuffer buffer = new StringBuffer();
+        //final StringBuffer buffer = new StringBuffer();
+        // Okuma Metodumuz
         Show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference dbGelenler= database.getReference("USERS");
+
+                DatabaseReference dbGelenler = db.getReference("MESSAGES");
                 dbGelenler.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot gelenler : dataSnapshot.getChildren()){
-                            buffer.append(gelenler.getValue(User.class).getName()+"  "+gelenler.getValue(User.class).getSurname()+"\n"+gelenler.getValue(User.class).getEmail()+"\n"+gelenler.getValue(User.class).getPhone()+"\n\n");
+
+
+                        for (DataSnapshot key : dataSnapshot.getChildren()) {
+                            mesajlar.append("Kullanıcı : "+key.getValue(User.class).getName() +"\n");
+                            mesajlar.append("Mesaj     :    "+key.getValue(User.class).getMesaj() + "\n");
+                            mesajlar.append("------------------------------------------------------------------------------------------------------------------------------" + "\n");
+
+
+                            // buffer.append(gelenler.getValue(User.class).getName()+"\n   "+gelenler.getValue(User.class).getMesaj()+"\n\n");
                         }
-                        showMessage("Kayıtlar",buffer.toString());
-                        buffer.delete(0,999999999);
+                        //showMessage("Mesajlar",buffer.toString());
                     }
 
                     @Override
@@ -90,13 +110,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
         Exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                alertDialogBuilder.setTitle("Bir Alert Dialog Örneği");
+                alertDialogBuilder.setTitle("UYARI !");
                 alertDialogBuilder
-                        .setMessage("Çıkmak istiyor musunuz?")
+                        .setMessage("Çıkış Yapmak İstiyor Musunuz?")
                         .setCancelable(false)
                         .setIcon(R.mipmap.ic_launcher_round)
                         .setPositiveButton("Evet", new DialogInterface.OnClickListener() {
@@ -118,19 +143,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void AddNewUser(String name,String surname,String mail,String phone){
 
-        User kullanıcı= new User(name,surname,mail,phone);
-        String key= myRef.push().getKey();
-        myRef.child("USERS/"+key).setValue(kullanıcı);
+
+
+
+
+
+
+
+
+
+
+
+    private void AddNewUser(String name, String mesaj) {
+        DatabaseReference dbGidenler = db.getReference("MESSAGES");
+
+
+        User kullanıcı = new User(name, mesaj);
+        String key = dbGidenler.push().getKey();
+
+        DatabaseReference dbGidenlerYeni = db.getReference("MESSAGES/"+key);
+
+        dbGidenlerYeni.setValue(new User(name,mesaj));
+
     }
 
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
+
+
+//    public void showMessage(String title,String Message){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setCancelable(true);
+//        builder.setTitle(title);
+//        builder.setMessage(Message);
+//        builder.show();
+//    }
 
 }

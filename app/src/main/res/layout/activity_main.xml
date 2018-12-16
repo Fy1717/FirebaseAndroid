@@ -4,78 +4,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:layout_marginTop="50dp"
     tools:context="com.example.x.teamlist.MainActivity"
+    android:background="#f4d596"
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editName"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:textSize="30sp"
+        android:textStyle="bold"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="KULLANICI ADINIZ"
+        android:layout_marginTop="40dp"
         android:textAlignment="center"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editSurname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Surname"
-        android:textAlignment="center"
-        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editMail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textAlignment="center"
-        android:hint="Mail Address"
-        android:inputType="textEmailAddress"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editPhone"
+        android:id="@+id/userMessage"
         android:layout_width="match_parent"
         android:textAlignment="center"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Phone"
-        android:inputType="phone"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:hint="MESAJINIZ"
+        android:inputType="textLongMessage"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/buttonAdd"
-        android:layout_marginLeft="130dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kayıt Ekle"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/buttonShow"
-        android:layout_marginLeft="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kayıtları Listele"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="175dp"
+            android:layout_height="45dp"
+            android:text="KAYDET"
+            android:textSize="25sp"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/buttonShow"
+            android:layout_width="175dp"
+            android:layout_height="45dp"
+            android:textSize="25sp"
+            android:text="LİSTELE"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/mesajlar"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/buttonExit"
-        android:layout_marginLeft="130dp"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:text="Çıkış"
+        android:layout_marginTop="150dp"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:text="ÇIKIŞ"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/kayıtlar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center" />
 
 </LinearLayout>
